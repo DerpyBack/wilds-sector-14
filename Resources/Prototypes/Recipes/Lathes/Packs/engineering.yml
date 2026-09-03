@@ -57,6 +57,8 @@
   - FirelockElectronics
   - DoorElectronics
   - AirAlarmElectronics
+  - AirlockControllerElectronics
+  - AirlockCyclerElectronics
   - StationMapElectronics
   - FireAlarmElectronics
   - MailingUnitElectronics
