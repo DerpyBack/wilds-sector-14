@@ -832,6 +832,9 @@
   id: Igniter # ConstructionGraph: makeshiftstunprod, FireBomb. Common ingredient in machines (HyperConvection)
 
 - type: Tag
+  id: IgnoredByArtifactTrigger # XenoArch TriggerFood: excludes raw ingredients the "never used in a recipe" heuristic would otherwise misclassify as a finished dish
+
+- type: Tag
   id: Inflatable # Storage whitelist: BorgModuleInflatable
 
 - type: Tag
@@ -1396,6 +1399,9 @@
 
 - type: Tag
   id: Soap # Storage whitelist: BorgModuleCustodial, ClothingBeltJanitor. CargoBounty: BountySoap
+
+- type: Tag
+  id: Alcohol # Reagent whitelist: XenoArch TriggerDrink - applied to BaseAlcohol so new cocktails are auto-included
 
 - type: Tag
   id: SolarTrackerElectronics # ConstructionGraph: SolarPanel

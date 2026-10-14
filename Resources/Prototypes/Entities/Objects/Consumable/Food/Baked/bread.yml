@@ -38,6 +38,7 @@
     tags:
     - Bread
     - Slice
+    - Cooked
   - type: SolutionContainerManager
     solutions:
       food:
@@ -169,6 +170,7 @@
     - ClothMade
     - Bread
     - Slice
+    - Cooked
   - type: SolutionContainerManager
     solutions:
       food:
@@ -779,6 +781,7 @@
     tags:
     - Bread
     - Slice
+    - Cooked
     - ClothMade
   - type: SolutionContainerManager
     solutions:

@@ -9,16 +9,21 @@
     weight: 0.5
   - prototype: TriggerPressureLow
 
+# Classic trace/exotic gases. Can show up at any node depth.
 - type: randomTable
-  id: XenoArchTriggerGasesBasic
+  id: XenoArchTriggersGas
   table:
-  - prototype: TriggerWater
+  - prototype: TriggerCO2
+    weight: 0.5
   - prototype: TriggerPlasma
     weight: 0.5
-  - prototype: TriggerRespirationGas
+  - prototype: TriggerN2O
+    weight: 0.5
   - prototype: TriggerTritium
     weight: 0.1
   - prototype: TriggerAmmonia
+    weight: 0.1
+  - prototype: TriggerFrezon
     weight: 0.1
 
 - type: randomTable
@@ -47,17 +52,7 @@
   - prototype: TriggerBrushing
   - prototype: TriggerMagnet
 
-- type: randomTable
-  id: XenoArchTriggersReagentsBasic
-  table:
-  - prototype: TriggerBlood
-  - prototype: TriggerChemCleaning
-    weight: 1
-  - prototype: TriggerChemSticky
-    weight: 0.5
-  - prototype: TriggerChemSlippery
-    weight: 0.5
-
+# Healing chems. Deep nodes only, and only Bicaridine (brute) or Dermaline (burn) - nothing else.
 - type: randomTable
   id: XenoArchTriggersMedicationSpecific
   table:
@@ -65,17 +60,6 @@
     weight: 1
   - prototype: TriggerChemBurn
     weight: 1
-  - prototype: TriggerChemToxin
-    weight: 1
-  - prototype: TriggerChemGenetic
-    weight: 0.5
-  - prototype: TriggerChemCryo
-    weight: 1
-  - prototype: TriggerChemNarcotic
-    weight: 0.5
-  - prototype: TriggerChemAcidic
-    weight: 0.5
-  
 
 - type: randomTable
   id: XenoArchTriggersDamage
@@ -103,92 +87,17 @@
 - type: randomTable
   id: XenoArchTriggersDrinks
   table:
-  # Drinks by Liquor
-  - !type:RandomTableGroupSelector
-    children:
-    - prototype: TriggerDrinkRum
-    - prototype: TriggerDrinkVodka
-    - prototype: TriggerDrinkWhiskey
-    - prototype: TriggerDrinkGin
-    - prototype: TriggerDrinkTequila
-    - prototype: TriggerDrinkBeer
-    - prototype: TriggerDrinkCoffee
-    - prototype: TriggerDrinkVermouth
-    - prototype: TriggerDrinkAbsinthe
-    - prototype: TriggerDrinkCognac
-    - prototype: TriggerDrinkWine
-    - prototype: TriggerDrinkAle
-    - prototype: TriggerDrinkChampagne
-
-  # Drinks by mixing method
-  - !type:RandomTableGroupSelector
-    children:
-    - prototype: TriggerDrinkShaken
-    - prototype: TriggerDrinkStirred
+  - prototype: TriggerDrink
 
 # Feed an artifact specific mutation-only plants. Will require cooperation with botany to complete.
 - type: randomTable
   id: XenoArchTriggersMutation
   table:
-  - prototype: TriggerFeedMeatwheat
-  - prototype: TriggerFeedMimana
-  - prototype: TriggerFeedLaughinPea
-  - prototype: TriggerFeedWorldPea
-  - prototype: TriggerFeedLemoon
-  - prototype: TriggerFeedExtradimensionalOrange
-  - prototype: TriggerFeedPapercane
-  - prototype: TriggerFeedBlueTomato
-  - prototype: TriggerFeedBloodTomato
-  - prototype: TriggerFeedBloonion
-  - prototype: TriggerFeedRainbowCannabis
-  - prototype: TriggerFeedDeathNettle
-  - prototype: TriggerFeedChillyPepper
-  - prototype: TriggerFeedLily
-  - prototype: TriggerFeedSpacemansTrumpet
   - prototype: TriggerFeedAmbrosiaDeus
-  - prototype: TriggerFeedKoibean
-  - prototype: TriggerFeedHolymelon
-  - prototype: TriggerFeedBluePumpkin
-  - prototype: TriggerFeedPyrotton
+  - prototype: TriggerFeedDeathNettle
 
 # Food! Go to your local chef to get a dish made from a specific ingredient
 - type: randomTable
   id: XenoArchTriggersFood
   table:
-  - !type:RandomTableGroupSelector
-    children:
-    - prototype: TriggerFeedMilk
-    - prototype: TriggerFeedCheese
-    - prototype: TriggerFeedButter
-  - prototype: TriggerFeedEgg
-  - !type:RandomTableGroupSelector
-    children:
-    - prototype: TriggerFeedMeat
-      weight: 3
-    - prototype: TriggerFeedChicken
-    - prototype: TriggerFeedFish
-  - !type:RandomTableGroupSelector
-    children:
-    - prototype: TriggerFeedTomato
-    - prototype: TriggerFeedCarrot
-    - prototype: TriggerFeedChili
-    - prototype: TriggerFeedCabbage
-    - prototype: TriggerFeedPotato
-  - !type:RandomTableGroupSelector
-    children:
-    - prototype: TriggerFeedApple
-    - prototype: TriggerFeedBerries
-  - prototype: TriggerFeedFlour
-    weight: 2
-  - prototype: TriggerFeedRice
-    weight: 0.1
-  - prototype: TriggerFeedOats
-    weight: 0.1
-
-# Complex gasses beyond your basics produced by artifacts. Will take an atmos tech to help you out.
-- type: randomTable
-  id: XenoArchTriggersGasComplex
-  table:
-  - prototype: TriggerSynthesisGas
-  - prototype: TriggerCryogenicGas
-  - prototype: TriggerElementalGas
+  - prototype: TriggerFood

@@ -102,6 +102,9 @@
   id: FoodEgg
   name: egg
   components:
+  - type: Tag
+    tags:
+    - IgnoredByArtifactTrigger
   - type: Sprite
     layers:
       - state: icon

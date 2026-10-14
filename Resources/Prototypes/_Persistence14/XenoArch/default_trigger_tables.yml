@@ -4,32 +4,35 @@
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersEnvironmental
   - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggerGasesBasic
+    tableId: XenoArchTriggersGas
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersEmote
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTool
     weight: 0.5
-  - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersReagentsBasic
+  - prototype: TriggerBlood
+    weight: 0.5
+  - prototype: TriggerWater
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersDamage
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTrivial
-  - prototype: TriggerMedicine
 
 - type: randomTable
   id: XenoArchTriggersDefaultMain
   table:
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTool
-  - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersReagentsBasic
+  - prototype: TriggerBlood
+    weight: 0.5
+  - prototype: TriggerWater
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersEnvironmental
+  - !type:RandomTableNestedSelector
+    tableId: XenoArchTriggersGas
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersDamage
 #  - !type:RandomTableNestedSelector
@@ -37,8 +40,7 @@
 #  - !type:RandomTableNestedSelector
 #    tableId: XenoArchTriggersFood
 #    weight: .1
-  - prototype: TriggerMedicine
-  - prototype: TriggerChemBotany
+#  - prototype: TriggerChemBotany
   - prototype: TriggerDeath
     weight: .1
 
@@ -55,15 +57,14 @@
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTrivial
     weight: 0.01
-  - !type:RandomTableGroupSelector
-    children:
-    - !type:RandomTableNestedSelector
-      tableId: XenoArchTriggersDrinks
-    - !type:RandomTableNestedSelector
-      tableId: XenoArchTriggersFood
+  - !type:RandomTableNestedSelector
+    tableId: XenoArchTriggersDrinks
+  - !type:RandomTableNestedSelector
+    tableId: XenoArchTriggersFood
+    weight: 0.7
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersMutation
   - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersGasComplex
+    tableId: XenoArchTriggersGas
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersMedicationSpecific
