@@ -34,6 +34,9 @@
     nameGeneration: food-sequence-taco-gen
     contentSeparator: ", "
   - type: Appearance
+  - type: Tag
+    tags:
+    - IgnoredByArtifactTrigger
 
 # Old tacos
 

@@ -7,6 +7,9 @@
   name: pasta dough
   description: A big ball of dough, perfect for making pasta.
   components:
+  - type: Tag
+    tags:
+    - IgnoredByArtifactTrigger
   - type: Item
     size: Normal
   - type: FlavorProfile
@@ -39,6 +42,7 @@
   - type: Tag
     tags:
     - Slice
+    - IgnoredByArtifactTrigger
   - type: Construction
     graph: DoughRopePasta
     node: start
@@ -136,6 +140,7 @@
   - type: Tag
     tags:
      - ClothMade
+     - IgnoredByArtifactTrigger
 
 - type: entity
   parent: FoodBakingBase
@@ -156,6 +161,7 @@
     tags:
     - Slice
     - ClothMade
+    - IgnoredByArtifactTrigger
   - type: Construction
     graph: DoughRopeCottonPasta
     node: start

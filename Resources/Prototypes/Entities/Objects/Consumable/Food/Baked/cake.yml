@@ -149,6 +149,9 @@
           Quantity: 5
   - type: Item
     heldPrefix: plain
+  - type: Tag
+    tags:
+    - IgnoredByArtifactTrigger
 
 # Added in type lines above
 
