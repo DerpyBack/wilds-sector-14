@@ -72,7 +72,7 @@ public sealed partial class DoorDeviceControlSystem : EntitySystem
     }
 
     /// <summary>
-    ///     Send a status update when our status changes, to device lists which have this device on them.
+    ///     Tells whoever listed us that we moved
     /// </summary>
     private void PushStatus(EntityUid uid)
     {

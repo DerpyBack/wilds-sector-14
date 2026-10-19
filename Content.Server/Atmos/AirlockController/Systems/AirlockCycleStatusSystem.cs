@@ -1,9 +1,12 @@
-using Content.Server.Power.EntitySystems;
+#region
+
 using Content.Shared.Atmos.AirlockController;
 using Content.Shared.Examine;
 using Content.Shared.Sound;
 using Content.Shared.Sound.Components;
 using Robust.Shared.Timing;
+
+#endregion
 
 namespace Content.Server.Atmos.AirlockController.Systems;
 
@@ -20,7 +23,6 @@ public sealed partial class AirlockCycleStatusSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SharedEmitSoundSystem _emitSound = default!;
     [Dependency] private SharedPointLightSystem _pointLight = default!;
-    [Dependency] private PowerReceiverSystem _power = default!;
     [Dependency] private IGameTiming _timing = default!;
 
     public void Apply(EntityUid uid, AirlockCycleStatus status)
@@ -33,8 +35,7 @@ public sealed partial class AirlockCycleStatusSystem : EntitySystem
 
         _appearance.SetData(uid, AirlockControllerVisuals.State, status.State);
         _appearance.SetData(uid, AirlockControllerVisuals.Display, display);
-        // Error should disappear on power-off too, but it has only one state, so check to disable it here.
-        _appearance.SetData(uid, AirlockControllerVisuals.Error, status.Stall != null && _power.IsPowered(uid));
+        _appearance.SetData(uid, AirlockControllerVisuals.Error, status.Stall != null);
         _appearance.SetData(uid, AirlockControllerVisuals.Cycling, status.Warning);
 
         _pointLight.SetEnabled(uid, status.Warning);

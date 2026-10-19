@@ -1,5 +1,9 @@
+#region
+
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+
+#endregion
 
 namespace Content.Shared.Atmos.AirlockController;
 

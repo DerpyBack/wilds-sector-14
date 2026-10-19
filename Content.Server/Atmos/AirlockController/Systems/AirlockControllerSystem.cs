@@ -1,3 +1,5 @@
+#region
+
 using Content.Server.Atmos.AirlockController.Components;
 using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.DeviceLinking.Systems;
@@ -21,6 +23,8 @@ using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+
+#endregion
 
 namespace Content.Server.Atmos.AirlockController.Systems;
 
