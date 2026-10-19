@@ -282,9 +282,7 @@
 - type: construction
   id: AirlockControllerFixture
   graph: AirlockController
-  startNode: start
   targetNode: airlock_controller
-  category: construction-category-utilities
   canBuildInImpassable: true
   conditions:
   - !type:WallmountCondition
@@ -292,9 +290,7 @@
 - type: construction
   id: AirlockCyclerFixture
   graph: AirlockCycler
-  startNode: start
   targetNode: airlock_cycler
-  category: construction-category-utilities
   canBuildInImpassable: true
   conditions:
   - !type:WallmountCondition
