@@ -44,6 +44,8 @@ public sealed partial class AirlockControllerWindow : FancyWindow
         CCycleBButton.Disabled = !idle || status.Side == AirlockSide.B || status.Maintenance;
 
         CCancelButton.Disabled = idle || status.Maintenance;
-        CCancelButton.Text = Loc.GetString(AirlockControllerLocale.CancelKey(state.CancelRequested));
+        CCancelButton.Text = Loc.GetString(state.CancelRequested
+            ? "airlock-controller-ui-cancel-emergency"
+            : "airlock-controller-ui-cancel");
     }
 }
