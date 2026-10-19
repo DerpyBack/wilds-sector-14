@@ -7,14 +7,12 @@ namespace Content.Client.Atmos.AirlockController.UI;
 public sealed partial class AirlockControllerBoundUserInterface : BoundUserInterface
 {
     [Dependency] private IPlayerManager _player = default!;
-    private AirlockControllerSystem _controller = default!; // Survival: Removed [Dependency] for early feature port
+    [Dependency] private AirlockControllerSystem _controller = default!;
 
     private AirlockControllerWindow? _window;
 
     public AirlockControllerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        IoCManager.InjectDependencies(this); // Survival: Added line for early feature port
-        _controller = EntMan.System<AirlockControllerSystem>(); // Survival: Added line for early feature port
     }
 
     protected override void Open()
