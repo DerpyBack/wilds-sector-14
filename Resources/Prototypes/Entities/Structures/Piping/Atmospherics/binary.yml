@@ -475,7 +475,7 @@
       pressureLockoutOverride: true
       inlet: inlet
       outlet: outlet
-      canLink: false
+      canLink: true
     - type: Construction
       graph: GasBinary
       node: dualportventpump
