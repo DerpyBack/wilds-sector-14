@@ -335,9 +335,6 @@
   name: dough
   description: A piece of dough.
   components:
-  - type: Tag
-    tags:
-    - IgnoredByArtifactTrigger
   - type: Item
     size: Normal
   - type: FlavorProfile
@@ -368,7 +365,6 @@
   - type: Tag
     tags:
     - Slice
-    - IgnoredByArtifactTrigger
   - type: Construction
     graph: DoughRope
     node: start
@@ -478,7 +474,6 @@
   - type: Tag
     tags:
     - Slice
-    - IgnoredByArtifactTrigger
 
 - type: entity
   parent: FoodBakingBase
@@ -521,7 +516,6 @@
   - type: Tag
     tags:
     - ClothMade
-    - IgnoredByArtifactTrigger
   - type: SolutionContainerManager
     solutions:
       food:
@@ -550,7 +544,6 @@
     tags:
     - Slice
     - ClothMade
-    - IgnoredByArtifactTrigger
   - type: Construction
     graph: DoughRopeCotton
     node: start
@@ -611,9 +604,6 @@
   components:
   - type: Sprite
     state: dough-pastry-baked
-  - type: Tag
-    tags:
-    - IgnoredByArtifactTrigger
 
 - type: entity
   parent: FoodBakingBase
@@ -777,9 +767,6 @@
           Quantity: 82
   - type: Extractable
     grindableSolutionName: food
-  - type: Tag
-    tags:
-    - IgnoredByArtifactTrigger
 
 - type: entity
   name: cheese wheel
@@ -797,9 +784,6 @@
   - type: SliceableFood
     count: 4
     slice: FoodCheeseSlice
-  - type: Tag
-    tags:
-    - IgnoredByArtifactTrigger
 
 - type: entity
   parent: FoodBakingBase

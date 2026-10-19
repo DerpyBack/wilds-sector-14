@@ -23,8 +23,7 @@ public sealed partial class ReagentWhitelistSystem : BaseWhitelistSystem<Reagent
             !PassTags(white, reagent) ||
             !PassGroups(white, reagent) ||
             !PassReactants(white, reagent) ||
-            !PassMixingCategories(white, reagent) ||
-            !PassProductOfTaggedReactant(white, reagent))
+            !PassMixingCategories(white, reagent))
             return false;
 
         return true;
@@ -39,8 +38,7 @@ public sealed partial class ReagentWhitelistSystem : BaseWhitelistSystem<Reagent
             !PassTags(white, reagent) ||
             !PassGroups(white, reagent) ||
             !PassReactants(white, reagent) ||
-            !PassMixingCategories(white, reagent) ||
-            !PassProductOfTaggedReactant(white, reagent))
+            !PassMixingCategories(white, reagent))
             return true;
 
         return false;
@@ -87,25 +85,6 @@ public sealed partial class ReagentWhitelistSystem : BaseWhitelistSystem<Reagent
 
         return reactions.Any();
     }
-    private bool PassProductOfTaggedReactant(ReagentWhitelist whitelist, ReagentPrototype reagent)
-    {
-        if (whitelist.ProductOfTaggedReactant.Count == 0)
-            return true;
-
-        foreach (var reaction in _reactionQuery.GetReactionsByProduct(reagent))
-        {
-            foreach (var reactantId in reaction.Reactants.Keys)
-            {
-                if (!_prototypeManager.TryIndex<ReagentPrototype>(reactantId, out var reactant))
-                    continue;
-
-                if (PassGeneric(reactant, whitelist.ProductOfTaggedReactant.ToArray(), whitelist.ProductReactantTagMode, (d, r) => r.Tags.Contains(d)))
-                    return true;
-            }
-        }
-
-        return false;
-    }
     #endregion
 }
 
@@ -134,13 +113,4 @@ public sealed partial class ReagentWhitelist
     public HashSet<ProtoId<MixingCategoryPrototype>> ReactionMixingCategories = new();
     [DataField]
     public QueryMode CategorySelectionMode = QueryMode.Any;
-
-    /// <summary>
-    /// If non-empty, the reagent must be the product of a reaction that has at least one (or all,
-    /// per <see cref="ProductReactantTagMode"/>) reactant reagent carrying one of these tags.
-    /// </summary>
-    [DataField("productOfTaggedReactant")]
-    public HashSet<ProtoId<TagPrototype>> ProductOfTaggedReactant = new();
-    [DataField]
-    public QueryMode ProductReactantTagMode = QueryMode.Any;
 }

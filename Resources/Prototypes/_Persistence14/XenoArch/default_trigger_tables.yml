@@ -4,35 +4,32 @@
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersEnvironmental
   - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersGas
+    tableId: XenoArchTriggerGasesBasic
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersEmote
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTool
     weight: 0.5
-  - prototype: TriggerBlood
-    weight: 0.5
-  - prototype: TriggerWater
+  - !type:RandomTableNestedSelector
+    tableId: XenoArchTriggersReagentsBasic
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersDamage
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTrivial
+  - prototype: TriggerMedicine
 
 - type: randomTable
   id: XenoArchTriggersDefaultMain
   table:
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTool
-  - prototype: TriggerBlood
-    weight: 0.5
-  - prototype: TriggerWater
+  - !type:RandomTableNestedSelector
+    tableId: XenoArchTriggersReagentsBasic
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersEnvironmental
-  - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersGas
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersDamage
 #  - !type:RandomTableNestedSelector
@@ -40,7 +37,8 @@
 #  - !type:RandomTableNestedSelector
 #    tableId: XenoArchTriggersFood
 #    weight: .1
-#  - prototype: TriggerChemBotany
+  - prototype: TriggerMedicine
+  - prototype: TriggerChemBotany
   - prototype: TriggerDeath
     weight: .1
 
@@ -57,14 +55,15 @@
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersTrivial
     weight: 0.01
-  - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersDrinks
-  - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersFood
-    weight: 0.7
+  - !type:RandomTableGroupSelector
+    children:
+    - !type:RandomTableNestedSelector
+      tableId: XenoArchTriggersDrinks
+    - !type:RandomTableNestedSelector
+      tableId: XenoArchTriggersFood
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersMutation
   - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersGas
+    tableId: XenoArchTriggersGasComplex
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersMedicationSpecific

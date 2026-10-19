@@ -61,7 +61,6 @@
     tags:
     - Raw
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Perishable
     # raw meat rots in 5 minutes, get it into the freezer fast
     rotAfter: 300
@@ -102,7 +101,6 @@
   - type: Tag
     tags:
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Item
     storedOffset: -2,1
     inhandVisuals:
@@ -182,7 +180,6 @@
     tags:
     - Raw
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: bacon
   - type: SolutionContainerManager
@@ -220,7 +217,6 @@
     - Raw
     - Meat
     - BearMeat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: bear
   - type: SolutionContainerManager
@@ -432,7 +428,6 @@
   - type: Tag
     tags:
     - GoliathMeat
-    - IgnoredByArtifactTrigger
 
 - type: entity
   parent: FoodMeatBase
@@ -444,7 +439,6 @@
     tags:
     - Raw
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     layers:
     - state: dragon
@@ -744,7 +738,6 @@
     tags:
     - Raw
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: rouny
   - type: SolutionContainerManager
@@ -849,7 +842,6 @@
     tags:
     - Raw
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: meatball
   - type: Construction
@@ -868,7 +860,6 @@
     tags:
     - Raw
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: raw_patty
   - type: InternalTemperature
@@ -1725,7 +1716,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: cutlet
   - type: SolutionContainerManager
@@ -1761,7 +1751,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     layers:
     - state: cutlet
@@ -1802,7 +1791,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: cutlet
     color: white
@@ -1841,7 +1829,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: cutlet
     color: white
@@ -1878,7 +1865,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: cutlet
     color: white
@@ -1915,7 +1901,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     layers:
     - state: cutlet
@@ -1957,7 +1942,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: spidercutlet
   - type: SolutionContainerManager
@@ -1999,7 +1983,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     state: xenocutlet
   - type: SolutionContainerManager
@@ -2083,7 +2066,6 @@
     - Raw
     - Cutlet
     - Meat
-    - IgnoredByArtifactTrigger
   - type: Sprite
     layers:
     - state: dragoncutlet

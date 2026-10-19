@@ -16,15 +16,6 @@ public sealed partial class XATItemInteractComponent : Component
 
     [DataField("use"), AutoNetworkedField]
     public int ReduceStackBy = 0;
-
-    /// <summary>
-    /// If true, in addition to passing <see cref="Whitelist"/>, the interacting item must look like
-    /// a finished dish rather than a raw ingredient. See <see cref="XATItemInteractSystem.PassRecipeResult"/>
-    /// for the exact rule (Cooked tag, recipe result, never used as an ingredient, with the
-    /// IgnoredByArtifactTrigger/Trash tags as manual overrides).
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool RequireRecipeResult = false;
 }
 
 [NetSerializable, Serializable]

@@ -47,8 +47,6 @@
   id: BaseAlcohol
   group: Drinks
   abstract: true
-  tags:
-  - Alcohol
   slipData:
     requiredSlipSpeed: 3.5
   friction: 0.4
