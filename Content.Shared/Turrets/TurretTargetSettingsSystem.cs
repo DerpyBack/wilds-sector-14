@@ -1,6 +1,8 @@
 using Content.Shared.Access.Systems;
 using JetBrains.Annotations;
 using Content.Shared.Station;
+using Robust.Shared.Prototypes;
+using Content.Shared.Access;
 
 namespace Content.Shared.Turrets;
 
@@ -11,8 +13,8 @@ namespace Content.Shared.Turrets;
 /// </summary>
 public sealed partial class TurretTargetSettingsSystem : EntitySystem
 {
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private SharedStationSystem _station = default!;
 
     /// <summary>
     /// Adds or removes access assignments from a <see cref="TurretTargetSettingsComponent.ExemptAccessAssignments"/> list.
@@ -117,7 +119,7 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     public bool EntityIsTargetForTurret(Entity<TurretTargetSettingsComponent> ent, EntityUid target)
     {
         var owningStationUID = _station.GetOwningStation(ent);
-        ICollection<int> accessAssignments =  new HashSet<int>();
+        ICollection<int> accessAssignments = new HashSet<int>();
 
         if (owningStationUID != null)
         {

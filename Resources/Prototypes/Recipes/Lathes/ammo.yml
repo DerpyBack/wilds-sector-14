@@ -96,14 +96,6 @@
     Uranium: 500
   unlockUses: 6
 
-# .25 Caseless
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolCaselessRifle
-  result: MagazinePistolCaselessRifle
-  materials:
-    Steel: 145
-
 # .30 Rifle
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
@@ -301,6 +293,37 @@
     Plastic: 300
     Uranium: 600
   unlockUses: 6
+
+#Persistence 14 .25 caseless
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBoxCaselessRifleRecipe
+  result: MagazineBoxCaselessRifle
+  materials:
+    Steel: 800
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolCaselessRifleRecipe
+  result: MagazinePistolCaselessRifle
+  materials:
+    Steel: 245
+
+- type: latheRecipe
+  parent: BaseAmmoBoxRecipe
+  id: MagazineBoxCaselessRiflePracticeRecipe
+  result: MagazineBoxCaselessRiflePractice
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolCaselessRiflePracticeRecipe
+  result: MagazinePistolCaselessRiflePractice
+  materials:
+    Steel: 185
+
 
 # .45 Magnum
 - type: latheRecipe

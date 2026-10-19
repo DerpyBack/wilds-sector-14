@@ -1,0 +1,76 @@
+- type: insightTrait
+  id: Priest1
+  name: insight-priest-powerful-prayer-name
+  content: insight-priest-powerful-prayer-desc
+  next: Priest2
+  trait: Priest1
+
+- type: trait
+  id: Priest1
+  name: insight-priest-powerful-prayer-name
+  description: insight-priest-powerful-prayer-desc
+  selectable: false
+  components:
+    - type: BibleUser
+
+- type: insightTrait
+  id: Priest2
+  name: Miracle Worker
+  content: "You can zap someone back from the grasp of death with a healing touch."
+  trait: Priest2
+  next: Priest3
+
+- type: trait
+  id: Priest2
+  name: Miracle Worker
+  description: "You can zap someone back from the grasp of death with a healing touch."
+  selectable: false
+  components:
+    - type: ActionGrant
+      actions:
+        - ActionMiracleWorker
+      autoDelete: true
+    - type: MiracleRevive
+      zapHeal:
+        types:
+          Asphyxiation: -40
+
+- type: entity
+  parent: BaseAction
+  id: ActionMiracleWorker
+  name: Miracle Worker
+  description: "Attempt to zap someone back to life. Will only work if the body can sustain life."
+  components:
+  - type: Action
+    priority: 1
+    useDelay: 3600
+    raiseOnUser: true
+    itemIconStyle: BigAction
+  - type: Sprite
+    sprite: Interface/Actions/changeling.rsi
+    layers:
+    - state: "devour"
+      map: ["enum.ActionVisuals.Icon"]
+    - state: "devour_on"
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+    event: !type:MiracleReviveEvent
+
+- type: insightTrait
+  id: Priest3
+  name: Godly Chanter
+  content: "Your prayers grant a blessing to everyone nearby. The blessing will have a random collection of positive effects."
+  trait: Priest2
+  next: Priest4
+
+- type: insightTrait
+  id: Priest4
+  name: Personal Sanctuary
+  content: "At any altar can open a portal to a pocket dimension that belongs to you. The portal will remain open as long as anyone remains inside."
+  trait: Priest2

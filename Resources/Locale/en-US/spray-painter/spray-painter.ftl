@@ -83,6 +83,7 @@ spray-painter-style-airlockstandard-salvage = Salvage
 spray-painter-style-airlockstandard-science = Science
 spray-painter-style-airlockstandard-security = Security
 spray-painter-style-airlockstandard-virology = Virology
+spray-painter-style-airlockstandard-syndicate = Syndicate
 
 spray-painter-style-airlockglass-atmospherics = Atmospherics
 spray-painter-style-airlockglass-basic = Basic
@@ -97,6 +98,7 @@ spray-painter-style-airlockglass-salvage = Salvage
 spray-painter-style-airlockglass-science = Science
 spray-painter-style-airlockglass-security = Security
 spray-painter-style-airlockglass-virology = Virology
+spray-painter-style-airlockglass-syndicate = Syndicate
 
 # Lockers
 spray-painter-style-locker-atmospherics = Atmospherics
@@ -132,6 +134,7 @@ spray-painter-style-locker-salvage = Salvage
 spray-painter-style-locker-scientist = Scientist
 spray-painter-style-locker-security = Security
 spray-painter-style-locker-welding = Welding
+spray-painter-style-locker-syndicate = Syndicate
 
 spray-painter-style-closet-basic = Basic
 spray-painter-style-closet-biohazard = Biohazard
@@ -149,6 +152,7 @@ spray-painter-style-closet-nitrogen = Internals (nitrogen)
 spray-painter-style-closet-oxygen = Internals (oxygen)
 spray-painter-style-closet-radiation = Radiation suit
 spray-painter-style-closet-tool = Tools
+spray-painter-style-closet-syndicate = Syndicate
 
 spray-painter-style-wallcloset-atmospherics = Atmospherics
 spray-painter-style-wallcloset-basic = Basic
@@ -175,6 +179,7 @@ spray-painter-style-walllocker-wallprisoner5 = Prisoner 5
 spray-painter-style-walllocker-wallprisoner6 = Prisoner 6
 spray-painter-style-walllocker-wallprisoner7 = Prisoner 7
 spray-painter-style-walllocker-wallprisoner8 = Prisoner 8
+spray-painter-style-walllocker-syndicate = Syndicate
 
 # Crates
 spray-painter-style-cratesteel-basic = Basic
@@ -183,6 +188,7 @@ spray-painter-style-cratesteel-engineering = Engineering
 spray-painter-style-cratesteel-radiation = Radiation
 spray-painter-style-cratesteel-science = Science
 spray-painter-style-cratesteel-surgery = Surgery
+spray-painter-style-cratesteel-syndicate = Syndicate
 
 spray-painter-style-crateplastic-basic = Basic
 spray-painter-style-crateplastic-chemistry = Chemistry
@@ -202,6 +208,7 @@ spray-painter-style-cratesecure-private = Private
 spray-painter-style-cratesecure-science = Science
 spray-painter-style-cratesecure-secgear = Secgear
 spray-painter-style-cratesecure-weapon = Weapon
+spray-painter-style-cratesecure-syndicate = Syndicate
 
 # Canisters
 spray-painter-style-canisters-air = Air
@@ -292,6 +299,10 @@ spray-painter-style-itempdas-seniorphysician = Senior Physician
 spray-painter-style-itempdas-seniorofficer = Senior Officer
 spray-painter-style-itempdas-seniorcourier = Senior Courier
 spray-painter-style-itempdas-pirate = Pirate
+spray-painter-style-itempdas-syndicate = Syndicate
+spray-painter-style-itempdas-syndicateoperative = Syndicate Operative
+spray-painter-style-itempdas-syndicatecommander = Syndicate Commander
+spray-painter-style-itempdas-syndicatecorpsman = Syndicate Corpsman
 
 # Items - Headsets
 spray-painter-style-itemheadsets-general = General

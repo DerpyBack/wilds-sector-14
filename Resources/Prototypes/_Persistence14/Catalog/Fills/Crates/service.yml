@@ -1,0 +1,52 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMousetrapBoxes
+  name: mousetraps crate
+  description: Mousetraps, for when all of service is being haunted by an entire horde of rats. Use sparingly... or not.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: BoxMousetrap
+
+- type: entity
+  parent: CrateCommandSecure
+  id: CrateNTMerch
+  name: Nanotrasen paraphernalia crate
+  description: A secured Nanotrasen crate.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BalloonNT
+          amount: 2
+        - id: NanotrasenFlippo
+        - id: NTHandyFlag
+        - id: TowelColorNT
+        - id: PlayingCardDeckBoxNanotrasen
+        - id: ClothingUniformJumpsuitNanotrasen
+        - id: ClothingNeckCloakNanotrasen
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateMerch
+  name: Syndicate paraphernalia crate
+  description: A dark steel crate with red bands and a letter S embossed on the front.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BalloonSyn
+          amount: 2
+        - id: SyndicateFlippo
+        - id: SyndieHandyFlag
+        - id: TowelColorSyndicate
+        - id: PlayingCardDeckBoxSyndicate
+        - id: ClothingUniformJumpsuitOperative
+        - id: ClothingNeckScarfStripedSyndieRed
+        - id: ClothingNeckScarfStripedSyndieGreen
+        - id: SyndicateBusinessCard
+          amount: 3
+        - id: ClothingOuterWinterSyndie

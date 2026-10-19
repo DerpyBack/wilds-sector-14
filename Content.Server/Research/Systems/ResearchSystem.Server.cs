@@ -1,6 +1,9 @@
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Persistence14.PersistentIdentifier;
+using Content.Shared.GridControl.Components;
 using Content.Shared.Research.Components;
-using System.Linq;
+using Content.Shared.Research.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Research.Systems;
 
@@ -8,30 +11,31 @@ public sealed partial class ResearchSystem
 {
     private void InitializeServer()
     {
-        SubscribeLocalEvent<ResearchServerComponent, ComponentStartup>(OnServerStartup);
-        SubscribeLocalEvent<ResearchServerComponent, ComponentShutdown>(OnServerShutdown);
         SubscribeLocalEvent<ResearchServerComponent, TechnologyDatabaseModifiedEvent>(OnServerDatabaseModified);
+        SubscribeLocalEvent<ResearchServerComponent, MapInitEvent>(OnServerMapInit);
+        SubscribeLocalEvent<ResearchServerComponent, AnchorStateChangedEvent>(OnServerAnchorStateChange);
+        SubscribeLocalEvent<ResearchServerComponent, StationTaggedStateChangedEvent>(OnServerFactionChange);
     }
 
-    private void OnServerStartup(EntityUid uid, ResearchServerComponent component, ComponentStartup args)
+    private void OnServerMapInit(EntityUid uid, ResearchServerComponent serverComponent, ref MapInitEvent args)
     {
-        var unusedId = EntityQuery<ResearchServerComponent>(true)
-            .Max(s => s.Id) + 1;
-        component.Id = unusedId;
-        Dirty(uid, component);
+        EnsureServerReferences(uid);
     }
 
-    private void OnServerShutdown(EntityUid uid, ResearchServerComponent component, ComponentShutdown args)
+    private void OnServerAnchorStateChange(EntityUid uid, ResearchServerComponent serverComponent, ref AnchorStateChangedEvent args)
     {
-        foreach (var client in new List<EntityUid>(component.Clients))
-        {
-            UnregisterClient(client, uid, serverComponent: component, dirtyServer: false);
-        }
+        if (args.Anchored)
+            EnsureServerReferences(uid);
+    }
+
+    private void OnServerFactionChange(EntityUid uid, ResearchServerComponent serverComponent, ref StationTaggedStateChangedEvent args)
+    {
+        EnsureServerReferences(uid);
     }
 
     private void OnServerDatabaseModified(EntityUid uid, ResearchServerComponent component, ref TechnologyDatabaseModifiedEvent args)
     {
-        foreach (var client in component.Clients)
+        foreach (var client in GetServerClients((uid, component)))
         {
             RaiseLocalEvent(client, ref args);
         }
@@ -52,76 +56,40 @@ public sealed partial class ResearchSystem
         ModifyServerPoints(uid, GetPointsPerSecond(uid, component) * time, component);
     }
 
-    /// <summary>
-    /// Registers a client to the specified server.
-    /// </summary>
-    /// <param name="client">The client being registered</param>
-    /// <param name="server">The server the client is being registered to</param>
-    /// <param name="clientComponent"></param>
-    /// <param name="serverComponent"></param>
-    /// <param name="dirtyServer">Whether or not to dirty the server component after registration</param>
-    public void RegisterClient(EntityUid client, EntityUid server, ResearchClientComponent? clientComponent = null,
-        ResearchServerComponent? serverComponent = null, bool dirtyServer = true)
+    private void EnsureServerReferences(Entity<ResearchServerComponent?, TechnologyDatabaseComponent?> server)
     {
-        if (!Resolve(client, ref clientComponent, false) || !Resolve(server, ref serverComponent, false))
+        if (!Resolve(server.Owner, ref server.Comp1, ref server.Comp2))
             return;
 
-        if (serverComponent.Clients.Contains(client))
-            return;
+        var (serverUid, serverComp, dbComp) = (server.Owner, server.Comp1!, server.Comp2!);
 
-        serverComponent.Clients.Add(client);
-        clientComponent.Server = server;
-        SyncClientWithServer(client, clientComponent: clientComponent);
+        var serverXform = Transform(serverUid);
+        if (serverXform.GridUid is not { } grid)
+            return; // If you are not on a grid, I do not care about you. At all.
 
-        if (dirtyServer && !TerminatingOrDeleted(server))
-            Dirty(server, serverComponent);
+        bool reset = false;
+        if (!_pid.TryResolveId(serverComp.LastKnownGrid, out var lastGridEnt) || lastGridEnt.Owner != grid)
+            reset = true;
 
-        var ev = new ResearchRegistrationChangedEvent(server);
-        RaiseLocalEvent(client, ref ev);
-    }
-
-    /// <summary>
-    /// Unregisterse a client from its server
-    /// </summary>
-    /// <param name="client"></param>
-    /// <param name="clientComponent"></param>
-    /// <param name="dirtyServer"></param>
-    public void UnregisterClient(EntityUid client, ResearchClientComponent? clientComponent = null, bool dirtyServer = true)
-    {
-        if (!Resolve(client, ref clientComponent))
-            return;
-
-        if (clientComponent.Server is not { } server)
-            return;
-
-        UnregisterClient(client, server, clientComponent, dirtyServer: dirtyServer);
-    }
-
-    /// <summary>
-    /// Unregisters a client from its server
-    /// </summary>
-    /// <param name="client"></param>
-    /// <param name="server"></param>
-    /// <param name="clientComponent"></param>
-    /// <param name="serverComponent"></param>
-    /// <param name="dirtyServer"></param>
-    public void UnregisterClient(EntityUid client, EntityUid server, ResearchClientComponent? clientComponent = null,
-        ResearchServerComponent? serverComponent = null, bool dirtyServer = true)
-    {
-        if (!Resolve(client, ref clientComponent, false) || !Resolve(server, ref serverComponent, false))
-            return;
-
-        serverComponent.Clients.Remove(client);
-        clientComponent.Server = null;
-        SyncClientWithServer(client, clientComponent: clientComponent);
-
-        if (dirtyServer && !TerminatingOrDeleted(server))
+        var faction = _station.GetOwningStation(server.Owner);
+        if (_pid.TryResolveId(serverComp.LastKnownFaction, out var lastFactionEnt))
         {
-            Dirty(server, serverComponent);
+            if (faction != lastFactionEnt) // Faction doesn't match previously linked faction.
+                reset = true;
         }
+        else if (faction != null) // Faction is linked when it wasn't previously.
+            reset = true;
 
-        var ev = new ResearchRegistrationChangedEvent(null);
-        RaiseLocalEvent(client, ref ev);
+        if (!reset)
+            return;
+
+        ResetDB((serverUid, serverComp, dbComp));
+        if (faction is not null)
+            serverComp.LastKnownFaction = _pid.EnsureId(faction.Value);
+        else
+            serverComp.LastKnownFaction = PersistentIdentifierSystem.EmptyId;
+        serverComp.LastKnownGrid = _pid.EnsureId(grid);
+        Dirty(serverUid, serverComp);
     }
 
     /// <summary>
@@ -141,7 +109,7 @@ public sealed partial class ResearchSystem
             return points;
 
         var ev = new ResearchServerGetPointsPerSecondEvent(uid, points);
-        foreach (var client in component.Clients)
+        foreach (var client in GetServerClients((uid, component)))
         {
             RaiseLocalEvent(client, ref ev);
         }
@@ -163,10 +131,82 @@ public sealed partial class ResearchSystem
             return;
         component.Points += points;
         var ev = new ResearchServerPointsChangedEvent(uid, component.Points, points);
-        foreach (var client in component.Clients)
+        foreach (var client in GetServerClients((uid, component)))
         {
             RaiseLocalEvent(client, ref ev);
         }
         Dirty(uid, component);
+    }
+
+    /// <summary>
+    /// Calculates a multiplier for research pricing using Shannon Entropy. Specialized research results in a low multiplier, 
+    /// while diverse techs like that used by large stations will have a penalty to price.
+    /// </summary>
+    private float CalculateDiversityMultiplier(ResearchServerComponent server, TechnologyDatabaseComponent db)
+    {
+        // No technology to effect cost.
+        if (db.UnlockedTechnologies.Count <= 1f)
+            return 1f;
+
+        // This will be used to mutate the values as we pass it trough the Shannon Entropy calculation
+        Dictionary<ProtoId<TechDisciplinePrototype>, float> disciplineValues = new();
+        var totalDisciplineValue = 0f;
+        foreach (var (discipline, list) in db.UnlockedTechnologies)
+        {
+            var sum = 0f;
+            foreach (var item in list)
+                sum += GetTechDiversityValue(server, item);
+
+            disciplineValues[discipline] = sum; // Using disciplineValues to store our output since we don't need the old value anymore.
+            totalDisciplineValue += sum;
+        }
+
+        // I don't think this is even possible... but if somehow we end up with no value, just say a multiplier of 1.
+        if (totalDisciplineValue <= 0f)
+            return 1f;
+
+        // This will store our Shannon Entropy, a measure of how spread out the technologies are between disciplines.
+        var entropy = 0f;
+        foreach (var (discipline, value) in disciplineValues)
+        {
+            var p = value / totalDisciplineValue; // Proportion of diversity value held by the current discipline
+            entropy += p * MathF.Log(p); // Shannon Entropy: Sum of p * ln (p)
+        }
+
+        // Precalulating the natural log of 4 cause its a constant.
+        // If we ever have this be live calculated by the total number of disciplines... then this will need to be changed.
+        var ln4 = 1.386294361f;
+        entropy = -entropy / ln4; // Normalize the Shannon Entropy by the current number of disciplines
+        entropy = MathF.Pow(entropy, 5); // Making the curve sharper
+
+        return 1 + server.MaxDiversityPenalty * entropy;
+    }
+
+    /// <summary>
+    /// Gets a value based on how important a tech is. 
+    /// Higher tier techs are more important, and scale based on the tier impact multipliers in the <see cref="ResearchServerComponent"/>
+    /// </summary>
+    private float GetTechDiversityValue(ResearchServerComponent server, ProtoId<TechnologyPrototype> techId)
+    {
+        var tech = ProtoMan.Index(techId);
+
+        // Scaling the tier to an array index
+        var level = tech.Tier - 1;
+        if (level >= server.TierDiversityImpactMultipliers.Length)
+            level = server.TierDiversityImpactMultipliers.Length - 1;
+
+        return server.TierDiversityImpactMultipliers[level];
+    }
+
+    private IEnumerable<Entity<ResearchClientComponent>> GetServerClients(Entity<ResearchServerComponent?> server)
+    {
+        var query = EntityQueryEnumerator<ResearchClientComponent>();
+        while (query.MoveNext(out var uid, out var clientComp))
+        {
+            if (!ServerCompatible(uid, server))
+                continue;
+
+            yield return (uid, clientComp);
+        }
     }
 }

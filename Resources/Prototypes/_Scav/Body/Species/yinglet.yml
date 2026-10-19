@@ -281,18 +281,16 @@
   components:
   - type: Damageable
     damageModifierSet: Yinglet
+    displacement: Dwarfism
   - type: Speech
     speechSounds: Alto
     allowedEmotes: ['Weh', 'Squeak']
+  - type: YingletAccent
   - type: Vocal
-    sounds:
-      Male: MaleHuman # TODO: Add UnisexYinglet
-      Female: FemaleHuman # TODO: Add UnisexYinglet
-      Unsexed: MaleHuman # TODO: Add UnisexYinglet
+    emoteSounds: MaleHuman # TODO: Add yinglet sounds
   - type: TypingIndicator
     proto: default
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 2
@@ -322,7 +320,7 @@
         damageType: Blunt
         damage: 300
       behaviors:
-      - !type:GibBehavior { }  
+      - !type:GibBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
@@ -378,7 +376,12 @@
     shiveringHeatRegulation: 250
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
-#DamageVisuals
+  - type: CreamPied
+    displacement: Dwarfism
+  - type: Flammable
+    displacement: Dwarfism
+  - type: InnerBodyAnomalyVisuals
+    displacement: Dwarfism
 
 - type: entity
   parent: OrganBase

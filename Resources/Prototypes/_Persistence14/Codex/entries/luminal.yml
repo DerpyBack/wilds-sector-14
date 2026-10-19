@@ -1,0 +1,39 @@
+- type: codexEntry
+  id: Luminal101
+  name: The Luminal Collective
+  content: "The Luminal Collective"
+  order: 0
+  category: Luminal
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Luminal102
+  name: The Discontusion
+  content: "The Discontusion"
+  order: 1
+  category: Luminal
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Luminal103
+  name: War of Light and Sound
+  content: "War of Light and Sound"
+  order: 2
+  category: Luminal
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Luminal104
+  name: The Florals on AJAX
+  content: "The Florals on AJAX"
+  order: 3
+  category: Luminal
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Luminal105
+  name: God Found
+  content: "God Found"
+  order: 4
+  category: Luminal
+  unlockHint: "Use a Codex Fragment"
