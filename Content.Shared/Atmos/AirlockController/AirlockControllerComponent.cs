@@ -1,13 +1,8 @@
-#region
-
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.DeviceLinking;
-using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-
-#endregion
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Atmos.AirlockController;
 
@@ -186,23 +181,20 @@ public sealed partial class AirlockControllerComponent : Component
     /// <summary>
     ///     Held high while the chamber is at side A's atmosphere and idle.
     /// </summary>
-    [DataField]
-    public ProtoId<SourcePortPrototype> StateAPort = "AirlockStateA";
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
+    public string StateAPort = "AirlockStateA";
 
-    [DataField]
-    public ProtoId<SourcePortPrototype> StateBPort = "AirlockStateB";
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
+    public string StateBPort = "AirlockStateB";
 
     /// <summary>
     ///     Held high for the whole cycle. Drives the spinny light and any extra feedback
     ///     someone wires up.
     /// </summary>
-    [DataField]
-    public ProtoId<SourcePortPrototype> CyclingPort = "AirlockCycling";
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
+    public string CyclingPort = "AirlockCycling";
 
     #endregion
-
-    [DataField]
-    public SoundSpecifier DenySound = new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg");
 
     /// <summary>
     ///     Bolt wire can becut

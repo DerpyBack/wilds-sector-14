@@ -1,16 +1,12 @@
-#region
-
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-
-#endregion
 
 namespace Content.Shared.Atmos.AirlockController;
 
 /// <summary>
 ///     Config edits handled here for prediction.
 /// </summary>
-public abstract partial class SharedAirlockControllerSystem : EntitySystem
+public abstract class SharedAirlockControllerSystem : EntitySystem
 {
     [Dependency] protected AccessReaderSystem Access = default!;
     [Dependency] protected SharedUserInterfaceSystem UserInterfaceSystem = default!;

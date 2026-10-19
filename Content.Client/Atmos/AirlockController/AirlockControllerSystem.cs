@@ -1,8 +1,5 @@
-#region
-
 using Content.Shared.Atmos.AirlockController;
-
-#endregion
+using Robust.Shared.GameStates;
 
 namespace Content.Client.Atmos.AirlockController;
 

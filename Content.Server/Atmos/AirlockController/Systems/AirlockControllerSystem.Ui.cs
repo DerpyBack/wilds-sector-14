@@ -1,17 +1,15 @@
-#region
-
 using System.Linq;
 using Content.Server.Atmos.AirlockController.Components;
 using Content.Server.Atmos.Monitor.Components;
 using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.Doors.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Atmos;
 using Content.Shared.Atmos.AirlockController;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Doors;
 using Content.Shared.Interaction;
-
-#endregion
+using Content.Shared.Wires;
 
 namespace Content.Server.Atmos.AirlockController.Systems;
 
