@@ -5,21 +5,10 @@ namespace Content.Client.Wall;
 /// <summary>
 /// Tracks fade progress for a wall-mounted entity.
 /// </summary>
-public struct WallMountFadeState
+internal struct WallMountFadeState
 {
-    /// <summary>
-    /// The sprite's original alpha before any fade was applied.
-    /// </summary>
     public float OriginalAlpha;
-
-    /// <summary>
-    /// The current fade multiplier.
-    /// </summary>
     public float CurrentAlpha;
-
-    /// <summary>
-    /// The target fade multiplier.
-    /// </summary>
     public float TargetAlpha;
 
     /// <summary>
@@ -62,7 +51,7 @@ public struct WallMountFadeState
 /// <summary>
 /// Per-viewport fade state for wall-mounted entities.
 /// </summary>
-public sealed class ViewportFadeState(SpriteSystem sprite, EntityQuery<SpriteComponent> spriteQuery) : IDisposable
+internal sealed class ViewportFadeState(SpriteSystem sprite, EntityQuery<SpriteComponent> spriteQuery) : IDisposable
 {
     private readonly SpriteSystem _sprite = sprite;
     private readonly EntityQuery<SpriteComponent> _spriteQuery = spriteQuery;

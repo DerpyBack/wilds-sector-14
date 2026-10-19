@@ -44,21 +44,14 @@ public sealed partial class WallMountVisibilitySystem : EntitySystem
     /// <summary>
     /// Whether directional visibility is currently enabled.
     /// </summary>
-    public bool DirectionalVisibilityEnabled = true;
-
-    /// <summary>
-    /// Whether wall-mount visibility changes fade smoothly or snap instantly.
-    /// </summary>
-    public bool FadeEnabled = true;
+    internal bool DirectionalVisibilityEnabled = true;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        _overlayInstance = new WallMountVisibilityOverlay();
-
+        _overlayInstance = new WallMountVisibilityOverlay(_timing, _map, _sprite, _xform, _tree, this, _gridQuery, _spriteQuery);
         Subs.CVar(_cfg, CCVars.WallMountDirectionalVisibility, OnDirectionalVisibilityChanged, true);
-        Subs.CVar(_cfg, CCVars.WallMountFade, OnFadeChanged, true);
     }
 
     public override void Shutdown()
@@ -99,13 +92,6 @@ public sealed partial class WallMountVisibilitySystem : EntitySystem
 
         var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
         _tileCache.Remove((gridUid, tile));
-            _overlayInstance.RestoreAll();
-        }
-    }
-
-    private void OnFadeChanged(bool enabled)
-    {
-        FadeEnabled = enabled;
     }
 
     /// <summary>
@@ -197,18 +183,5 @@ public sealed partial class WallMountVisibilitySystem : EntitySystem
         }
 
         return _tileCache[key] = false;
-    /// Checks whether the tile contains any anchored blocking entity.
-    /// </summary>
-    public bool IsTileBlocked(Entity<MapGridComponent> grid, Vector2i tile)
-    {
-        var enumerator = _map.GetAnchoredEntitiesEnumerator(grid.Owner, grid, tile);
-        while (enumerator.MoveNext(out var anchored))
-        {
-            if (!HasComp<WallComponent>(anchored.Value))
-                continue;
-
-            return true;
-        }
-        return false;
     }
 }
