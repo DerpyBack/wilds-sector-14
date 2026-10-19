@@ -103,12 +103,11 @@ public abstract partial class SharedAirlockControllerSystem : EntitySystem
         if (!AccessQuery.TryComp(target, out var reader))
             return true;
 
-        // Survival: Use persi Access.IsAllowed func
-        // var sources = Access.FindPotentialAccessItems(user);
-        // var tags = Access.FindAccessTags(user, sources);
-        // Access.FindStationRecordKeys(user, out var keys, sources);
+        var sources = Access.FindPotentialAccessItems(user);
+        var tags = Access.FindAccessTags(user, sources);
+        Access.FindStationRecordKeys(user, out var keys, sources);
 
-        return Access.IsAllowed(user, target, reader); // Survival: Use persi Access.IsAllowed func (3 args)
+        return Access.IsAllowed(tags, keys, target, reader);
     }
 
     private void OnSetVentRoles(Entity<AirlockControllerComponent> ent, ref AirlockControllerSetVentRolesMessage args)

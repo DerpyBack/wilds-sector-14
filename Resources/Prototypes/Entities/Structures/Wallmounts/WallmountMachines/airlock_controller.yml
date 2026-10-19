@@ -127,7 +127,7 @@
     boardName: wires-board-name-airlock-controller
     layoutId: AirlockController
   - type: AccessReader
-#    access: [["Atmospherics"]] # Survival: Remove default access restriction
+    access: [["Atmospherics"]]
   - type: ContainerFill
     containers:
       board: [ AirlockControllerElectronics ]
