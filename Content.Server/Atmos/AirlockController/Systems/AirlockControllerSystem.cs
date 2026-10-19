@@ -1,11 +1,9 @@
 using Content.Server.Atmos.AirlockController.Components;
-using Content.Server.Atmos.Monitor.Components;
 using Content.Server.Atmos.Monitor.Systems;
-using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Doors.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.AirlockController;
@@ -45,13 +43,6 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private IGameTiming _timing = default!;
 
-    private EntityQuery<DeviceNetworkComponent> _netQuery;
-    private EntityQuery<AirlockCyclerComponent> _cyclerQuery;
-    private EntityQuery<GasVentPumpComponent> _ventQuery;
-    private EntityQuery<GasVentScrubberComponent> _scrubberQuery;
-    private EntityQuery<AtmosMonitorComponent> _sensorQuery;
-    private EntityQuery<DoorDeviceControlComponent> _doorQuery;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -60,13 +51,6 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
         SubscribeLocalEvent<AirlockControllerComponent, DeviceNetworkPacketEvent>(OnPacketRecv);
         SubscribeLocalEvent<AirlockControllerComponent, DeviceListUpdateEvent>(OnDeviceListUpdate);
         SubscribeLocalEvent<AirlockControllerComponent, ExaminedEvent>(OnExamine);
-
-        _netQuery = GetEntityQuery<DeviceNetworkComponent>();
-        _cyclerQuery = GetEntityQuery<AirlockCyclerComponent>();
-        _ventQuery = GetEntityQuery<GasVentPumpComponent>();
-        _scrubberQuery = GetEntityQuery<GasVentScrubberComponent>();
-        _sensorQuery = GetEntityQuery<AtmosMonitorComponent>();
-        _doorQuery = GetEntityQuery<DoorDeviceControlComponent>();
 
         InitializeUi();
     }
@@ -97,7 +81,7 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
             if (args.Devices.Contains(device))
                 continue;
 
-            if (!_netQuery.TryComp(device, out var net))
+            if (!TryComp<DeviceNetworkComponent>(device, out var net))
                 continue;
 
             comp.VentData.Remove(net.Address);
@@ -259,10 +243,10 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
 
     private void SendDoorCommand(Entity<AirlockControllerComponent> ent, EntityUid door, string address, string command)
     {
-        if (!_netQuery.TryComp(ent, out var net) || net.ReceiveFrequency == null)
+        if (!TryComp<DeviceNetworkComponent>(ent, out var net) || net.ReceiveFrequency == null)
             return;
 
-        if (!_netQuery.TryComp(door, out var doorNet) || doorNet.ReceiveFrequency == null)
+        if (!TryComp<DeviceNetworkComponent>(door, out var doorNet) || doorNet.ReceiveFrequency == null)
             return;
 
         var payload = new NetworkPayload
@@ -344,7 +328,7 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
         if (_tag.HasTag(user, PreventAccessLoggingTag))
             return;
 
-        if (AccessQuery.TryComp(ent, out var reader))
+        if (TryComp<AccessReaderComponent>(ent, out var reader))
             _access.LogAccess((ent, reader), user);
     }
 
@@ -902,7 +886,7 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
         // Preset or target sensor mode? Use preset if sensor died
         if (comp.TargetSensors.TryGetValue(side, out var sensor)
             && _power.IsPowered(sensor)
-            && _netQuery.TryComp(sensor, out var net)
+            && TryComp<DeviceNetworkComponent>(sensor, out var net)
             && comp.SensorData.TryGetValue(net.Address, out var data))
         {
             return data.Pressure;
@@ -1059,7 +1043,7 @@ public sealed partial class AirlockControllerSystem : SharedAirlockControllerSys
         foreach (var device in _deviceList.GetDeviceList(ent.Owner).Values)
         {
             if (!comp.CyclerRoles.TryGetValue(device, out var side)
-                || !_cyclerQuery.TryComp(device, out var panel))
+                || !TryComp<AirlockCyclerComponent>(device, out var panel))
             {
                 continue;
             }
