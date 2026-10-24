@@ -1208,7 +1208,7 @@
         damage:
           types:
             Cold: 1.5 # 6 per u
-
+#new for Persi 14#
 - type: reagent
   id: Puncturase
   name: reagent-name-puncturase
@@ -1219,13 +1219,12 @@
   color: "#b9bf93"
   metabolisms:
     Bloodstream:
-      metabolismRate: 0.025
+      metabolismRate: 0.025 #the original upstream metabolism rate was 0.5#
       effects:
       - !type:HealthChange
         damage:
           types:
-            Piercing: -0.25 # 10 per u
-            Radiation: 0.02 # 0.02 per u, 3 for 15u
+            Piercing: -0.19 #the orignal upstream damage was -2.5#
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -1347,7 +1346,7 @@
           min: 20
         emote: Scream
         probability: 0.2
-
+#new for Persistence 14 I changed the metabolism rate to be slower, but I messed up the math so it was worse than dermaline.#
 - type: reagent
   id: Insuzine
   name: reagent-name-insuzine
@@ -1364,7 +1363,7 @@
       - !type:HealthChange
         damage:
           types:
-            Shock: -0.09375 # 6 per u
+            Shock: -0.25 # 6.25 per u whereas in upstream its 6 per u this is a very minor buff but improves it over dermaline for healing shock#
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
