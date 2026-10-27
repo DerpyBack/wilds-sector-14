@@ -104,7 +104,7 @@
     sprite: Objects/Misc/module.rsi
     state: cpu_security
   product: SecurityTechFabCircuitboard
-  cost: 10000
+  cost: 14000
   category: cargoproduct-category-name-armory
   group: huntermarket2
 
@@ -124,7 +124,7 @@
     sprite: Clothing/Head/Hardsuits/capspace.rsi
     state: icon
   product: LockerCaptainFilledHardsuit
-  cost: 17500
+  cost: 27500
   category: cargoproduct-category-name-armory
   group: market4
 

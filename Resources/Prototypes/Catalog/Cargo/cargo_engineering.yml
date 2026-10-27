@@ -84,7 +84,7 @@
     sprite: Objects/Tanks/Jetpacks/mini.rsi
     state: icon
   product: CrateEngineeringMiniJetpack
-  cost: 1500
+  cost: 3500
   category: cargoproduct-category-name-engineering
   group: market
 
@@ -174,7 +174,7 @@
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
     state: icon
   product: LockerChiefEngineerFilledHardsuit
-  cost: 12500
+  cost: 22500
   category: cargoproduct-category-name-engineering
   group: market
 

@@ -4,7 +4,7 @@
     sprite: Structures/Shuttles/thruster.rsi
     state: base
   product: CrateEngineeringThruster
-  cost: 1500
+  cost: 2500
   category: cargoproduct-category-name-shuttle
   group: market
 
@@ -34,7 +34,7 @@
     sprite: Objects/Fun/Instruments/otherinstruments.rsi
     state: helicopter
   product: CrateEngineeringShuttleStarterKit
-  cost: 7500
+  cost: 9500
   category: cargoproduct-category-name-shuttle
   group: market
 

@@ -14,7 +14,7 @@
     sprite: Clothing/Head/Hardsuits/luxury.rsi
     state: icon
   product: CrateCargoLuxuryHardsuit
-  cost: 10000
+  cost: 12500
   category: cargoproduct-category-name-cargo
   group: explorermarket3
 
