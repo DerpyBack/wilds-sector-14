@@ -16,8 +16,8 @@
 - type: entity
   parent: BaseItem
   id: NTHandyFlag
-  name: Nanotrasen handheld flag
-  description: "Glory to NT! Wait, they really made a handheld flag for a corporation?"
+  name: Corporate handheld flag
+  description: "Glory to-! Wait, they really made a handheld flag for a corporation?"
   components:
   - type: Sprite
     sprite: Objects/Misc/Handy_Flags/NT_handy_flag.rsi
@@ -32,7 +32,7 @@
   parent: [BaseItem, BaseSyndicateContraband]
   id: SyndieHandyFlag
   name: syndicate handheld flag
-  description: "For truly rebellious patriots. Death to NT!"
+  description: "For truly rebellious patriots. Death to Corps!"
   components:
   - type: Sprite
     sprite: Objects/Misc/Handy_Flags/syndie_handy_flag.rsi

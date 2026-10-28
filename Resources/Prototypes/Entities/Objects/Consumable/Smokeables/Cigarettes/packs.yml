@@ -198,7 +198,7 @@
   parent: CigPackMixedBase
   name: Dan's soaked smokes
   suffix: Mixed
-  description: Dan worked with NT chemistry to dispose of excess chemicals, ENJOY.
+  description: Dan worked with WSCS chemistry to dispose of excess chemicals, ENJOY.
   components:
   - type: Sprite
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/mixed.rsi

@@ -16,8 +16,8 @@
 - type: entity
   id: NTDefaultCircuitBoard
   parent: BaseSiliconLawboard
-  name: law board (NT Default)
-  description: An electronics board containing the NT Default lawset.
+  name: law board (WSCS Default)
+  description: An electronics board containing the WSCS Default lawset.
   components:
   - type: SiliconLawProvider
     laws: NTDefault

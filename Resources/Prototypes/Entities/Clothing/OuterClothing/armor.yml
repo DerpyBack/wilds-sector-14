@@ -224,8 +224,8 @@
 - type: entity
   parent: ClothingOuterVestWeb
   id: ClothingOuterVestNT
-  name: Nanotrasen vest
-  description: A specialized vest designed by Nanotrasen.
+  name: Corporate vest
+  description: A specialized vest designed by a Corp.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Vests/pressvest.rsi

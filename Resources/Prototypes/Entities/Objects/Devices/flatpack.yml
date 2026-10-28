@@ -390,7 +390,7 @@
   parent: [ BaseFlatpack, BaseSyndicateContraband ]
   id: SyndicateMicrowaveFlatpack
   name: donk co. microwave flatpack
-  description: A flatpack used for constructing a microwave too hot for Nanotrasen to handle.
+  description: A flatpack used for constructing a microwave too hot for WSCS to handle.
   components:
   - type: Item
     size: Normal

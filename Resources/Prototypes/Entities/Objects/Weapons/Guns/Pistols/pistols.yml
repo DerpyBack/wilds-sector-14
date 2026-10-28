@@ -195,7 +195,7 @@
   name: mk 58
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolMk58
-  description: Designed by Nanotrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of Nanotrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
+  description: Designed by a corporate small arms division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of corporate station security and emergency response teams. Feeds from .35 pistol magazines.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
@@ -221,7 +221,7 @@
   name: N1984
   parent: [BaseWeaponPistol, BaseSecurityContraband]
   id: WeaponPistolN1984
-  description: An exceptionally powerful ‘hand cannon’ designed as part of Nanotrasen's BFG initiative. Chambered in .45, the lord’s caliber, it is generally considered too unwieldy for standard use but has become something of a status symbol among Nanotrasen officials. Feeds from .45 pistol magazines.
+  description: An exceptionally powerful ‘hand cannon’ designed as part of a corporate's BFG initiative. Chambered in .45, the lord’s caliber, it is generally considered too unwieldy for standard use but has become something of a status symbol among corporate officials. Feeds from .45 pistol magazines.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/N1984.rsi
@@ -432,7 +432,7 @@
   parent: BaseWeaponPistol
   name: Mk32 "Universal"
   id: WeaponPistolUniversal
-  description: The Mark 32 Offensive Handgun, designed by NanoTrasen's Small Arms Division. Uses .45 ammo.
+  description: The Mark 32 Offensive Handgun, designed by a corporate's small arms division. Uses .45 ammo.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Pistols/universal.rsi

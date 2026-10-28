@@ -40,7 +40,7 @@
   parent: [ TemperatureProtectionMinimal, ClothingOuterEVASuitBase ]
   id: ClothingOuterSuitEmergency
   name: emergency pressure suit
-  description: This bulky, uninsulated pressure suit was clearly not meant for extended use in outer space, despite NanoTrasen's claims that it passes corporate regulations.
+  description: This bulky, uninsulated pressure suit was clearly not meant for extended use in outer space, despite claims that it passes corporate regulations.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Suits/eva_emergency.rsi

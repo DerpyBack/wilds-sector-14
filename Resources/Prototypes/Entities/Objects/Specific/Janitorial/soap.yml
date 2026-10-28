@@ -90,8 +90,8 @@
 - type: entity
   parent: Soap
   id: SoapNT
-  name: nanotrasen soap
-  description: A Nanotrasen brand bar of soap. Smells of plasma.
+  name: regal blue soap
+  description: A corporate brand bar of soap. Smells of plasma.
   components:
   - type: Sprite
     layers:

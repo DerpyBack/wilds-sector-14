@@ -3,7 +3,7 @@
   parent: [ BaseStructureDynamic, BasePaperLabelableVisualized ]
   id: ClosetBase
   name: closet
-  description: A standard-issue Nanotrasen storage unit.
+  description: A standard-issue storage unit.
   components:
   - type: Animateable
   - type: ResistLocker
@@ -113,7 +113,7 @@
   parent: [ BaseWallmountMetallic, StructureHealthContainerWeak ]
   id: BaseWallCloset
   name: wall closet
-  description: A standard-issue Nanotrasen storage unit, now on walls.
+  description: A standard-issue storage unit, now on walls.
   components:
   - type: ResistLocker
   - type: Weldable

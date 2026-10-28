@@ -88,7 +88,7 @@
 - type: entity
   parent: AltarBaseWood
   id: AltarNanotrasen
-  name: nanotrasen altar
+  name: corporate altar
   components:
   - type: Sprite
     sprite: Structures/Furniture/Altars/Gods/nanotrasen.rsi
@@ -440,7 +440,7 @@
   - type: PointLight
     radius: 1.5
     energy: 1
-    color: "#f08080"  
+    color: "#f08080"
   - type: Construction
     graph: AltarGraph
     node: altarFangs

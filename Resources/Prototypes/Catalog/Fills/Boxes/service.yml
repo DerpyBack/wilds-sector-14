@@ -31,7 +31,7 @@
       - state: mousetraps
 
 - type: entity
-  name: NT "AgriChem Is Fun" kit
+  name: WSCS "AgriChem Is Fun" kit
   parent: BoxCardboard
   id: BoxAgrichem
   description: For the budding botanist ready to learn about maximizing farm output. This faded box must be at least 50 years old.

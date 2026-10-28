@@ -117,7 +117,7 @@
   parent: CrateElectrical
   id: CrateEngineeringElectricalSupplies
   name: electrical supplies crate
-  description: NT is not responsible for any workplace infighting relating to the insulated gloves included within these crates.
+  description: Corporate is not responsible for any workplace infighting relating to the insulated gloves included within these crates.
   components:
   - type: EntityTableContainerFill
     containers:

@@ -16,7 +16,7 @@
   parent: CrateCommandSecure
   id: CrateMaterialPhoron10
   name: phoron crate
-  description: 10 sheets of Phoron brought to you by Nanotrasen.
+  description: 10 sheets of Phoron brought to you by WSCS.
   components:
   - type: EntityTableContainerFill
     containers:
